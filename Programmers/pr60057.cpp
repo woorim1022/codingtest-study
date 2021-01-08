@@ -1,34 +1,23 @@
 #include <string>
 #include <vector>
-#include <iostream>
-#include <string>
-
 using namespace std;
 
-int main(void){
-	int n = 8;
-	std::string s;
-	s =	"aabbaccc";
-	int answer = solution(*s);
-	cout << answer;
-}
-
-int solution(string &s) {
+int solution(string s) {
     int n = s.length(), ans = n;
     for(int k = 1; k <= n/2; k++){
         int cnt = 0, i = 0;
-        //ºñ±³´ë»ó i
+        //ë¹„êµëŒ€ìƒ i
         while(i < n){
             int same_n = 0, next = 0;
             if(i + k > n){
                 cnt+= n - i; break;
             }
-            //»ùÇÃ j
+            //ìƒ˜í”Œ j
             for(int j = i+k; j < n; j+=k){
-                //ºñ±³½ÃÀÛ
+                //ë¹„êµì‹œìž‘
                 int t;
                 for(t = 0; t < k; t++){
-                    //´Ù¸¥°Ô ÇÏ³ª¶óµµ ÀÖÀ¸¸é 0À¸·Î
+                    //ë‹¤ë¥¸ê²Œ í•˜ë‚˜ë¼ë„ ìžˆìœ¼ë©´ 0ìœ¼ë¡œ
                     if(s[i+t] != s[j+t])break;
                 }
                 if(t == k) same_n ++;

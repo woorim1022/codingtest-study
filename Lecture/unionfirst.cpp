@@ -1,16 +1,16 @@
 #include <stdio.h>
 
-//À¯´Ï¿Â ÆÄÀÎµå(ÇÕÁıÇÕ Ã£±â)
-//´ëÇ¥ÀûÀÎ ±×·¡ÇÁ ¾Ë°í¸®Áò
-//find ¾Ë°í¸®ÁòÀº µÎ °³ÀÇ ³ëµåÀÇ ºÎ¸ğ ³ëµå¸¦ È®ÀÎÇÏ¿© ÇöÀç °°Àº ÁıÇÕ¿¡ ¼ÓÇÏ´ÂÁö È®ÀÎÇÏ´Â ¾Ë°í¸®Áò
+//ìœ ë‹ˆì˜¨ íŒŒì¸ë“œ(í•©ì§‘í•© ì°¾ê¸°)
+//ëŒ€í‘œì ì¸ ê·¸ë˜í”„ ì•Œê³ ë¦¬ì¦˜
+//find ì•Œê³ ë¦¬ì¦˜ì€ ë‘ ê°œì˜ ë…¸ë“œì˜ ë¶€ëª¨ ë…¸ë“œë¥¼ í™•ì¸í•˜ì—¬ í˜„ì¬ ê°™ì€ ì§‘í•©ì— ì†í•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 
-//ºÎ¸ğ³ëµå¸¦ Ã£´Â ÇÔ¼ö
+//ë¶€ëª¨ë…¸ë“œë¥¼ ì°¾ëŠ” í•¨ìˆ˜
 int getParent(int parent[], int x){
-    if(parent[x] == x) return x; //Àç±ÍÇÔ¼öÀÇ Á¾·áºÎºĞ
-    return parent[x] = getParent(parent, parent[x]);   //Àç±ÍÀûÀ¸·Î ¹İº¹
+    if(parent[x] == x) return x; //ì¬ê·€í•¨ìˆ˜ì˜ ì¢…ë£Œë¶€ë¶„
+    return parent[x] = getParent(parent, parent[x]);   //ì¬ê·€ì ìœ¼ë¡œ ë°˜ë³µ
 }
 
-//µÎ ºÎ¸ğ ³ëµå¸¦ ÇÕÄ¡´Â ÇÔ¼ö
+//ë‘ ë¶€ëª¨ ë…¸ë“œë¥¼ í•©ì¹˜ëŠ” í•¨ìˆ˜
 int unionParent(int parent[], int a, int b){
     a = getParent(parent, a);
     b = getParent(parent, b);
@@ -18,7 +18,7 @@ int unionParent(int parent[], int a, int b){
     else parent[a] = b; 
 }
 
-//°°Àº ºÎ¸ğ¸¦ °¡Áö´ÂÁö È®ÀÎ
+//ê°™ì€ ë¶€ëª¨ë¥¼ ê°€ì§€ëŠ”ì§€ í™•ì¸
 int findParent(int parent[], int a, int b) {
     a = getParent(parent, a);
     b = getParent(parent, b);
@@ -39,11 +39,11 @@ int main(void){
     unionParent(parent, 6, 7);
     unionParent(parent, 7, 8);
 
-    printf("1°ú 5´Â ¿¬°áµÇ¾î ÀÖ³ª¿ä? %d\n", findParent(parent, 1, 5));
+    printf("1ê³¼ 5ëŠ” ì—°ê²°ë˜ì–´ ìˆë‚˜ìš”? %d\n", findParent(parent, 1, 5));
     
     unionParent(parent, 1, 5);
     
-    printf("1°ú 5´Â ¿¬°áµÇ¾î ÀÖ³ª¿ä? %d\n", findParent(parent, 1, 5));
+    printf("1ê³¼ 5ëŠ” ì—°ê²°ë˜ì–´ ìˆë‚˜ìš”? %d\n", findParent(parent, 1, 5));
 
 	
 	return 0;
