@@ -15,27 +15,49 @@
 # 특정한 인덱스에 해당하는 수가 연속으로 더해질 수 있는 최대의 수
 # 1 <= K <= 10,000
 
-n, m, k = list(map(int, input().split(' ')))
-num = list(map(int, input().split(' ')))
 
+
+######################################################################
+######################################################################
 # num을 크기가 큰 순서대로 정렬한다
 # 인덱스 0의 숫자를 k번 더해주고 인덱스 1의 숫자를 1번 더해주는 것을
 # 더한 횟수가 m이 될때까지 반복
+# 이 방법은 M이 100억 이상처럼 커진다면 시간 초과 판정을 받음
+
+
+# n, m, k = list(map(int, input().split(' ')))
+# num = list(map(int, input().split(' ')))
+#
+# # 내림차순으로 정렬
+# num.sort(reverse=True)
+#
+# answer = 0
+# bc = 0
+# # m번 반복해서 더해주자
+# for _ in range(m):
+#     if bc < k:
+#         bc += 1
+#         answer += num[0]
+#     else:
+#         answer += num[1]
+#         bc = 0
+#
+# print(answer)
+######################################################################
+######################################################################
+
+
+
+# 가장 큰 수를 k번 더한 것과 두번째 큰 수를 한 번 더한 값이 m / (K+1) 번 반복된다
+# m 이 K+1 로 나누어 떨어지지 않는 경우를 위해 가장 큰 수를 m % (k+1) 만큼 더 더해준다
+n, m, k = list(map(int, input().split(' ')))
+num = list(map(int, input().split(' ')))
 
 # 내림차순으로 정렬
 num.sort(reverse=True)
 
-answer = 0
 bc = 0
 # m번 반복해서 더해주자
-for _ in range(m):
-    if bc < k:
-        bc += 1
-        answer += num[0]
-        list.append(num[0])
-    else:
-        answer += num[1]
-        bc = 0
-        list.append(num[1])
+answer = (num[0]*k + num[1])*(m/(k+1))+num[0]*(m%(k+1))
 
-print(answer)
+print(int(answer))
