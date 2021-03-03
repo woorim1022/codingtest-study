@@ -43,6 +43,10 @@ for i in range(n):
         if ishill == True:
             ishill = False
             hill.append(height[i])
-            maxhill = max(hill[len(hill)-1]-hill[0], maxhill)
+            maxhill = max(hill[-1]-hill[0], maxhill)
             hill = []
 print(maxhill)
+
+
+
+
