@@ -22,5 +22,4 @@ def solve(stage):
             visited[i] = 0
 
 
-
 solve(0)

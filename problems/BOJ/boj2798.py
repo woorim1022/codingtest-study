@@ -38,7 +38,11 @@
 # 93 181 245 214 315 36 185 138 216 295
 # 예제 출력 2
 # 497
-#
+
+
+
+
+
 # n, m = map(int, input().split(' '))
 # list = list(map(int, input().split(' ')))
 # sum = 0
@@ -52,13 +56,15 @@
 #                 sum = max(sum, temp)
 # print(sum)
 
+
+
+
 n, m = map(int, input().split())
+card = list(map(int, input().split()))  # 카드 리스트 5 6 7 8 9  n=5 카드덱의 카드갯수? m=21 목표치
 
 answer = 0  # 정답출력
-card = list(map(int, input().split()))  # 카드 리스트 5 6 7 8 9  n=5 카드덱의 카드갯수? m=21 목표치
 used = [0] * 3  # 몇번째 카드를 뽑았는지 담기(3개의 카드) [0,0,0]
 visited = [0] * (n + 1)  # 사용한 카드는 중복안되게 [0,0,0....n+1개의 0]
-
 
 # 재귀함수
 def solve(stage):
