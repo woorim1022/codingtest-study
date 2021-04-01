@@ -13,7 +13,7 @@ for i in range(n):
                     cnt += 1
                     break
 
-print(cnt)
+print(cn)
 
 
 

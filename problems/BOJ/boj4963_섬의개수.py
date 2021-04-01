@@ -17,36 +17,75 @@
 # 둘째 줄부터 h개 줄에는 지도가 주어진다. 1은 땅, 0은 바다이다.
 #
 # 입력의 마지막 줄에는 0이 두 개 주어진다.
+# from collections import deque
+#
+# dx = [-1, -1, 0, 1, 1, 1, 0, -1]
+# dy = [0, 1, 1, 1, 0, -1, -1, -1]
+#
+# while True:
+#     w, h = map(int, input().split(' '))
+#     if w == 0 and h == 0:
+#         break;
+#     map_s = [list(map(int,input().split(' '))) for _ in range(h)]
+#     q = deque()
+#     cnt = 0
+#     for i in range(h):
+#         for j in range(w):
+#             if map_s[i][j] == 1:
+#                 q.append((i, j))
+#                 map_s[i][j] = 2
+#                 while q:
+#                     cx, cy = q.popleft()
+#                     for k in range(8):
+#                         nx = cx + dx[k]
+#                         ny = cy + dy[k]
+#                         if 0 <= nx < h and 0 <= ny < w:
+#                             if map_s[nx][ny] == 1:
+#                                 q.append((nx, ny))
+#                                 map_s[nx][ny] = 2
+#                 else:
+#                     cnt += 1
+#
+#
+#     print(cnt)
+
 
 
 from collections import deque
 
-dx = [-1, -1, 0, 1, 1, 1, 0, -1]
-dy = [0, 1, 1, 1, 0, -1, -1, -1]
+dx = [-1,-1,0,1,1,1,0,-1]
+dy = [0,1,1,1,0,-1,-1,-1]
+def bfs(island):
+    global dx, dy
+    cnt = 0
+    q = deque()
+    for i in range(h):
+        for j in range(w):
+            # 땅이면
+            # bfs 탐색
+            if island[i][j] == 1:
+                island[i][j] = 2
+                q.append((i,j))
+
+                while q:
+                    x, y = q.popleft()
+                    for k in range(8):
+                        cx = x + dx[k]
+                        cy = y + dy[k]
+                        if 0 <= cx < h and 0 <= cy < w:
+                            if island[cx][cy] == 1:
+                                 island[cx][cy] = 2
+                                q.append((cx, cy))
+                cnt += 1
+    print(cnt)
+
 
 while True:
     w, h = map(int, input().split(' '))
-    if w == 0 and h == 0:
-        break;
-    map_s = [list(map(int,input().split(' '))) for _ in range(h)]
-    q = deque()
-    cnt = 0
-    for i in range(h):
-        for j in range(w):
-            if map_s[i][j] == 1:
-                q.append((i, j))
-                map_s[i][j] = 2
-                while q:
-                    cx, cy = q.popleft()
-                    for k in range(8):
-                        nx = cx + dx[k]
-                        ny = cy + dy[k]
-                        if 0 <= nx < h and 0 <= ny < w:
-                            if map_s[nx][ny] == 1:
-                                q.append((nx, ny))
-                                map_s[nx][ny] = 2
-                else:
-                    cnt += 1
+    if w == 0 and w == 0:
+        break
+    island = [list(map(int, input().split(' '))) for _ in range(h)]
+
+    bfs(island)
 
 
-    print(cnt)
