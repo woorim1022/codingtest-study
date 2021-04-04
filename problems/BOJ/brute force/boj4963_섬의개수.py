@@ -75,7 +75,7 @@ def bfs(island):
                         if 0 <= cx < h and 0 <= cy < w:
                             if island[cx][cy] == 1:
                                  island[cx][cy] = 2
-                                q.append((cx, cy))
+                                 q.append((cx, cy))
                 cnt += 1
     print(cnt)
 
