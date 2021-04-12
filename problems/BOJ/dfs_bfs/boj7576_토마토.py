@@ -25,10 +25,6 @@ def bfs(tomato, N, M, q):
 
 
 
-
-
-
-
 M, N = map(int, input().split(' '))
 tomato = [[0]*M]*N
 for i in range(N):
