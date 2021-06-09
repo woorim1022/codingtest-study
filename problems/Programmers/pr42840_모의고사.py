@@ -14,6 +14,7 @@ def solution(answers):
 
     print(correct)
 
+    #enemurate 활용
     maxcor = -1
     for i in range(3):
         if correct[i] == maxcor:
