@@ -16,12 +16,15 @@ public class SW1289_원재의메모리복구하기 {
 			for(int j = 0 ;j < tc.length; j++) {
 				if(j == 0 && tc[j] == '1') {
 					ans++;
+					continue;
 				}
 				if(j != 0 && tc[j] == '1' && tc[j-1] == '0') {
 					ans++;
+					continue;
 				}
 				if(j != 0 && tc[j] == '0' && tc[j-1] == '1') {
 					ans++;
+					continue;
 				}
 			}
 			System.out.println("#" + i + " " + ans);
