@@ -2,14 +2,12 @@ package com.woorim.problems;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class SW1873_상호의배틀필드 {
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Scanner sc = new Scanner(System.in);
 		StringTokenizer st = null;
 		String line = "";
 		int T = Integer.parseInt(br.readLine());
@@ -41,49 +39,56 @@ public class SW1873_상호의배틀필드 {
 //			System.out.println(Arrays.deepToString(map));
 //			System.out.println("--------------------------");
 			
+			
+			
+			
 			for(int i = 0; i < N; i++) {
 				int nx = -1, ny = -1;
+				
+				
+				
 				switch(move[i]) {
 				case 'U':
 					nx = cx-1;
 					ny = cy;
-					if(nx >= 0 && nx < H && ny >= 0 && ny < W && map[nx][ny] == '.') {
+					if(nx >= 0 && map[nx][ny] == '.') {
 						map[cx][cy] ='.';
-						cx = nx;
-						cy = ny;
-						map[nx][ny] ='^';
+						cx = nx; 
 					}
+					map[cx][cy] ='^';
 					break;
 				case 'D':
 					nx = cx+1;
 					ny = cy;
-					if(nx >= 0 && nx < H && ny >= 0 && ny < W && map[nx][ny] == '.') {
+					if(nx < H && map[nx][ny] == '.') {
 						map[cx][cy] ='.';
 						cx = nx;
-						cy = ny;
-						map[nx][ny] ='v';
 					}
+					map[cx][cy] ='v';
 					break;
 				case 'L':
 					nx = cx;
 					ny = cy-1;
-					if(nx >= 0 && nx < H && ny >= 0 && ny < W && map[nx][ny] == '.') {
+					if(ny >= 0 && map[nx][ny] == '.') {
 						map[cx][cy] ='.';
-						cx = nx;
 						cy = ny;
-						map[nx][ny] ='<';
 					}
+					map[cx][cy] ='<';
 					break;
 				case 'R':
 					nx = cx;
 					ny = cy+1;
-					if(nx >= 0 && nx < H && ny >= 0 && ny < W && map[nx][ny] == '.') {
+					if(ny < W && map[nx][ny] == '.') {
 						map[cx][cy] ='.';
-						cx = nx;
 						cy = ny;
-						map[nx][ny] ='>';
 					}
+					map[cx][cy] ='>';
 					break;
+					
+					
+					
+					
+					
 				case 'S':
 					switch(map[cx][cy]){
 					case '^':
@@ -134,6 +139,18 @@ public class SW1873_상호의배틀필드 {
 					break;
 				}
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			System.out.print("#" + t + " ");
 			for(int i = 0; i < H ; i++) {
