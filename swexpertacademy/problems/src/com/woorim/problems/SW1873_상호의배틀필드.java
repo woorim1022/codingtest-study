@@ -141,17 +141,6 @@ public class SW1873_상호의배틀필드 {
 			}
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			System.out.print("#" + t + " ");
 			for(int i = 0; i < H ; i++) {
 				for(int j = 0; j < W ; j++) {

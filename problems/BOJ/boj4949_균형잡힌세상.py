@@ -14,16 +14,19 @@ while sentence != ".":
         elif w == ')':
             if len(bracket) == 0 or bracket[-1] != '(':
                 ans = 'no'
-                continue
+                break
             else:
                 bracket.pop()
         elif w == ']':
             if len(bracket) == 0 or bracket[-1] != '[':
                 ans = 'no'
-                continue
+                break
             else:
                 bracket.pop()
-        else: continue
+    # 괄호가 하나인 경우에는 남아있을 수 있으므로 처리해줘야함
+    if bracket:
+        ans = 'no'
+
     result.append(ans)
     bracket = []
     sentence = input()
