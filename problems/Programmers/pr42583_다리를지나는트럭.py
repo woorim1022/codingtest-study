@@ -25,6 +25,8 @@ def solution(bridge_length, weight, truck_weights):
         if q[0][1] == bridge_length:
             cur -= q[0][0]
             q.popleft()
+
+
         answer += 1
         if not q and not tw:
             break
