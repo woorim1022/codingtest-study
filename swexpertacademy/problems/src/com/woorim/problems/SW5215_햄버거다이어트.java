@@ -29,7 +29,7 @@ public class SW5215_햄버거다이어트 {
 			int max = 0;
 			int temp = 0;
 			for(int i = 0; i < N; i++) {
-				Math.max(a, b)
+//				Math.max();
 			}
 			
 			
