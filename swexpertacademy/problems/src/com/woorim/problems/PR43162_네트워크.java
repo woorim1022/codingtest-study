@@ -1,7 +1,6 @@
 package com.woorim.problems;
 
 public class PR43162_네트워크 {
-
 	 static boolean[] visit = new boolean[201];
 	 public static void main(String[] args) {
 		solution(3, new int[][] {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}});

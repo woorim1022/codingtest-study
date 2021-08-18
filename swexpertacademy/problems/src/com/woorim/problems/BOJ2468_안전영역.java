@@ -21,7 +21,6 @@ public class BOJ2468_안전영역 {
 		StringTokenizer st = null;
 		N = Integer.parseInt(br.readLine());
 		map = new int[N][N];
-		visit = new int[N][N];
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for(int j = 0; j < N; j++) {
@@ -29,27 +28,31 @@ public class BOJ2468_안전영역 {
 			}
 		}
 		
-		for(int h = 0; h < 100; h++) {
-			mapCopy = map.clone();
+		for(int h = 1; h < 101; h++) {
+			mapCopy = new int[N][N];
 			cnt = 0;
+			visit = new int[N][N];
 			for (int i = 0; i < N; i++) {
 				for(int j = 0; j < N; j++) {
 					visit[i][j] = 0;
 					if(map[i][j] <= h) {
 						mapCopy[i][j] = 0;
+					}else{
+						mapCopy[i][j] = 1;
 					}
 				}
 			}
 			for (int i = 0; i < N; i++) {
 				for(int j = 0; j < N; j++) {
-					if(map[i][j] != 0 && visit[i][j] == 0) {
-						solve(i, j);			
+					if(mapCopy[i][j] == 1 && visit[i][j] == 0) {
+						solve(i, j);
+						cnt++;
 					}
 				}
 			}
 			max = Math.max(cnt, max);
 		}
-		System.out.println(max);
+		System.out.println((max==0)?1:max);
 	}
 	private static void solve(int row, int col) {
 		visit[row][col] = 1;
@@ -57,12 +60,9 @@ public class BOJ2468_안전영역 {
 			int nr = row + dx[i];
 			int nc = col + dy[i];
 			if(nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
-			if(mapCopy[nr][nc] == 0) continue;
-			if(visit[nr][nc] == 1) continue;
-			solve(nr, nc);
+			if(mapCopy[nr][nc] == 1 && visit[nr][nc] == 0)
+				solve(nr, nc);
 		}
-		cnt++;
-		return;
 	}
 	
 }
