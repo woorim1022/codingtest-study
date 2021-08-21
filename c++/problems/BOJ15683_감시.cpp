@@ -1,4 +1,9 @@
 /*
+
+C++ 이용한 알고리즘 문제풀이시 유용한 라이브러리, 함수 정리
+https://velog.io/@gowoonsori/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%97%90%EC%9C%A0%EC%9A%A9%ED%95%9Ccpp%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%ACor%ED%95%A8%EC%88%98
+
+
 - int arr1[5] = { 1, 2, 3 }; // 배열의 요소들은 { 1, 2, 3, 0, 0 } 으로 초기화 됨
 - int arr2[5]; // 배열의 요소들은 모두 쓰레기값으로 초기화 됨
 - int arr3[10] = { 0 }; // 배열의 요소들은 모두 0으로 초기화 됨
