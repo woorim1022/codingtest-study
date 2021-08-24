@@ -15,10 +15,6 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-
-
-
-
 void dfs(int idx, int sum, int target, vector<int>& numbers){
     if(idx == numSize){
         if(sum == target){
