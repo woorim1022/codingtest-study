@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+
 public class BOJ16236_아기상어 {
 	static class Pos{
 		int r, c;
