@@ -45,7 +45,6 @@ public class BOJ2021_최소환승경로 {
 		start = Integer.parseInt(st.nextToken());
 		end = Integer.parseInt(st.nextToken());
 		
-		
 		answer = solve(start, end);
 		System.out.println(answer);
 	}
@@ -75,8 +74,7 @@ public class BOJ2021_최소환승경로 {
 						}
 					}
 				}
-			}
-			
+			}		
 		}
 		return -1;
 	}
