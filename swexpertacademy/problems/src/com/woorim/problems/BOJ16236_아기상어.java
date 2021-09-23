@@ -28,60 +28,90 @@ import java.util.StringTokenizer;
 
 public class BOJ16236_아기상어 {
 	static class Pos{
-		int r, c;
+		int r, c, moveCnt;
 		public Pos(int r, int c, int moveCnt) {
 			this.r = r;
 			this.c = c;
+			this.moveCnt = moveCnt;
 		}
 	}
 	static int[] dx = {-1, 0, 0, 1};
 	static int[] dy = {0, -1, 1, 0};
 	static int N;	// 맵의 크기
 	static int[][] map;
-	static int[] shark, fish; // 상어정보, 먹을 물고기 정보
-	static int moveCnt;
-	static boolean[][] visited;
-	static int ans;
+	static int[] shark; // 상어정보, 먹을 물고기 정보
+	static boolean[][] visit;
+	static int eatCnt;
+	static int ans = 0;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
 		N = Integer.parseInt(br.readLine());
 		map = new int[N][N];
+		visit = new boolean[N][N];
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
 				map[i][j] = Integer.parseInt(st.nextToken());
 				if(map[i][j] == 9) {
-					shark = new int[] {i, j, 2};
+					shark = new int[] {i, j, 2};// 행, 열, 크기
 				}
 			}
 		}
-		solve();
+		
+		//1. 자신과 가장 가깝고 자기보다 작은 물고기를 bfs로 탐색(아기상어보다 크면 탐색 X)
+		//		거리 이동할 때 마다 cnt 증가
+		//		0보다 크고 아기 상어보다 작으면 잡아먹어, eatCnt++
+		//    	if(eatCnt == 상어크기 )	상어크기++
+		eatCnt = 0;
+
+		map[shark[0]][shark[1]] = 0;
+		boolean possible = solve(shark[0], shark[1]);
+		while(possible) {
+			visit = new boolean[N][N];
+			possible = solve(shark[0], shark[1]);
+		}
+		
+		
 		System.out.println(ans);
 
 	}
-	private static void solve() {
+	private static boolean solve(int curR, int curC) {
 		Queue<Pos> q = new LinkedList<>();
-		q.offer(new Pos(shark[0], shark[1], moveCnt));
+		q.offer(new Pos(curR, curC, 1));
+		visit[curR][curC] = true;
 		while(!q.isEmpty()) {
 			Pos pos = q.poll();
-			for(int i = 0; i < 4; i++) {
+			for (int i = 0; i < 4; i++) {
 				int nr = pos.r + dx[i];
 				int nc = pos.c + dy[i];
-				if(nr < 0 || nr >= N || nc < 0 || nc >= N) continue;
-				if(!visited[nr][nc] && map[nr][nc] <= shark[2]) {
-					// 방문하지 않았고 상어크기보다 작으면(0이거나 작은먹이면)
-					// 0이거나 map[nr][nc] == shark[2]
-						// 그냥 다음으로
-					// 상어크기보다 작은경우
-						// 냠 -> 현재위치 = 0
-						// 먹은 횟수 == 상어크기
-							// 상어크기++;
-							// 먹은횟수 초기화;
-						// 다음으로
+				int moveCnt = pos.moveCnt;
+				//System.out.println("moveCnt : " + moveCnt);
+				
+				if(nr < 0 || nr >= N || nc < 0 || nc >= N || map[nr][nc] > shark[2]) continue;
+				if(!visit[nr][nc]) {
+					visit[nr][nc] = true;
+					if(map[nr][nc] > 0 && map[nr][nc] < shark[2] ){
+						// 먹을 수 있는 물고기인 경우
+						//가장 가까운 물고기, 가장 위, 가장 왼쪽
+						// 먹어 
+						shark[0] = nr;
+						shark[1] = nc;
+						eatCnt++;
+						ans += moveCnt;
+						//System.out.println("ans : " + ans);
+						map[nr][nc] = 0;
+						if(shark[2] == eatCnt) {
+							shark[2]++;
+							eatCnt = 0;
+						}
+						return true;
+					}
+					q.offer(new Pos(nr, nc, ++moveCnt));
 				}
 			}
 		}
+		return false;
 	}
 
 }
