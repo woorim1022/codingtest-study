@@ -39,6 +39,7 @@ public class PCS {
 		subset(0);
 
 	}
+	// 순열코드
 	private static void permutation(int cnt) {
 //		if(cnt == M) {
 //			for(int i = 0; i < M; i++) {
@@ -57,6 +58,8 @@ public class PCS {
 //			}
 //		}
 	}
+	
+	// 조합
 	private static void combination(int cnt, int start) {
 //		if(cnt == M) {
 //			for(int i = 0; i < M; i++) {
@@ -71,6 +74,8 @@ public class PCS {
 //		}
 
 	}
+	
+	// 부분집합
 	private static void subset(int cnt) {
 //		if(cnt == N) {
 //			for(int i = 0; i < N; i++) {
